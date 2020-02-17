@@ -18,7 +18,7 @@ function CharacterCount() {
 
   return (
     <div className="CharacterCount">
-      <p>Records the amount of words you type!</p>
+      <p>Records the amount of characters and words you type!</p>
       <textarea onChange={keyPress}></textarea>
       <p>Character Count: {chars}</p>
       <p>Words Count: {words}</p>
