@@ -1,0 +1,14 @@
+.LessText button {
+  background: #000;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin: 0 5px;
+  color: #fff;
+}
+
+
+.LessText button:focus {
+  outline: 0;
+  box-shadow: 0 0 0 3px #ccc;
+}
