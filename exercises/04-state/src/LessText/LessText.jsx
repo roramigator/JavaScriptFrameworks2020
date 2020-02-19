@@ -5,19 +5,17 @@ function LessText({text, maxLength}) {
 
   const [renderedText, setText] = useState(text.slice(0, maxLength));
 
-  const hideText = () => {
-    setText(text.slice(0, maxLength));
-  };
-
-  const showText = () => {
-    setText(text);
-  };
+  const showMore = more => {
+    more
+      ? setText(text)
+      : setText(text.slice(0, maxLength));
+  }
 
   return (
     <div className="LessText">
       <p>{renderedText}</p>
-      <button onClick={showText}>Read More</button>
-      <button onClick={hideText}>Read Less</button>
+      <button onClick={() => showMore(true)}>Read More</button>
+      <button onClick={() => showMore(false)}>Read Less</button>
     </div>
   );
 }
