@@ -1,3 +1,11 @@
 .container {
   max-width: 600px;
 }
+
+h3 {
+  display: flex;
+}
+
+h3 > * {
+  flex: 1;
+}
