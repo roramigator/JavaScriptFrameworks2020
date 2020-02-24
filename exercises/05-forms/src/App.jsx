@@ -131,12 +131,12 @@ function App() {
        */}
       {isSubmitted && (
         <div className="card card-body bg-light mt-4 mb-4">
-          Results:
+          <h2>Results:</h2>
           <ul className="list-unstyled mb-0">
             {/* Add <li></li> tags here */}
             {
               Object.entries(formValues).map((array, idx) => {
-                return <li key={idx}><h3><i>{array[0]}:</i> <strong>{array[1]}</strong></h3></li>
+                return <li key={idx}><i>{array[0]}:</i> <strong>{array[1]}</strong></li>
               })
             }
           </ul>

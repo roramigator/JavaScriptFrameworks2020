@@ -2,10 +2,10 @@
   max-width: 600px;
 }
 
-h3 {
+li {
   display: flex;
 }
 
-h3 > * {
+li > * {
   flex: 1;
 }
