@@ -7,6 +7,7 @@ const GroceryList = () => {
   const [msg, setMsg] = useState("");
   const [totalCost, setTotalCost] = useState(0);
   const [list, setList] = useState([]);
+  const [qtys, setQtys] = useState({});
 
   const addItem = e => {
     e.preventDefault();
@@ -21,6 +22,33 @@ const GroceryList = () => {
     }else{
       setMsg("You cannot have empty fields")
     }
+    console.log(list)
+
+    list.forEach(item => {
+      console.log(item)
+      if (qtys[Object.keys(item)]){
+        setQtys({
+          ...qtys,
+          [Object.keys(item)]: qtys[Object.keys(item)] + 1
+        });
+      }
+      else{
+        const key = [Object.keys(item)];
+        setQtys({
+          ...qtys,
+          [key]: 1
+        });
+      }
+    })
+
+    console.log(qtys);
+
+    // (list.reduce((tally, item) => {
+    //   if (tally[item]) tally[item] += 1;
+    //   else tally[item] = 1;
+    //   return tally;
+    // }, {}))
+
   }
 
   const deleteItem = id => {
@@ -112,7 +140,7 @@ const GroceryList = () => {
           <strong>Total Cost: ${/* Complete me */}{totalCost}</strong>
         </p>
         <div className="text-right">
-          <button type="button" className="btn btn-outline-success" onClick={() => { setMsg(""); setList([]) }}>
+          <button type="button" className="btn btn-outline-success" onClick={() => { setMsg(""); setList([]); setTotalCost(0) }}>
             Clear
           </button>
         </div>
