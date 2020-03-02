@@ -25,8 +25,16 @@ function AddressForm(props) {
    * - Use callback function(s) in props to update <App>'s state
    * - Add an event handler to handle form submission
    */
+   const updateState = e => {
+     props.setFormData({
+       ...props.formData,
+       [e.target.name]: e.target.value
+     });
+   };
+
   return (
-    <form className="container mt-4">
+    <form className="container mt-4" onSubmit={e => props.setDisplayResults(true)}>
+      {/* You will need to handle form submission */}
       <div className="form-group">
         <label htmlFor="firstName" className="control-label">
           First Name
@@ -36,6 +44,8 @@ function AddressForm(props) {
           name="firstName"
           type="text"
           className="form-control"
+          value={props.formData.firstName}
+          onChange={updateState}
         />
       </div>
       <div className="form-group">
@@ -47,6 +57,8 @@ function AddressForm(props) {
           name="lastName"
           type="text"
           className="form-control"
+          value={props.formData.lastName}
+          onChange={updateState}
         />
       </div>
       <div className="form-group">
@@ -58,9 +70,11 @@ function AddressForm(props) {
           name="addressLine1"
           type="text"
           className="form-control"
+          value={props.formData.addressLine1}
+          onChange={updateState}
         />
         <p className="help-block text-muted">
-          Street address, P.O. box, company name, c/o
+          Street Address, P.O. Box, Company Name, C/O
         </p>
       </div>
 
@@ -68,17 +82,26 @@ function AddressForm(props) {
         <label htmlFor="city" className="control-label">
           City / Town
         </label>
-        <input id="city" name="city" type="text" className="form-control" />
+        <input
+          id="city"
+          name="city"
+          type="text"
+          className="form-control"
+          value={props.formData.city}
+          onChange={updateState}
+        />
       </div>
       <div className="form-group">
         <label htmlFor="state" className="control-label">
           State / Province / Region
         </label>
-        <select id="state" name="state" className="form-control">
-          <option></option>
-          {states.map((state, idx) => {
-            return <option key={`state-${idx}`}>{state}</option>;
-          })}
+        {/* Loop through the states you imported here */}
+        <select id="state" name="state" className="form-control" value={props.formData.state} onChange={updateState}>
+          {
+            states.map((state, idx) => {
+              return <option key={`state${idx}`} value={state}>{state}</option>
+            })
+          }
         </select>
       </div>
 
@@ -91,6 +114,8 @@ function AddressForm(props) {
           name="postalCode"
           type="text"
           className="form-control"
+          value={props.formData.postalCode}
+          onChange={updateState}
         />
       </div>
 
@@ -98,11 +123,13 @@ function AddressForm(props) {
         <label htmlFor="country" className="control-label">
           Country
         </label>
-        <select id="country" name="country" className="form-control">
-          <option></option>
-          {countries.map((state, idx) => {
-            return <option key={`state-${idx}`}>{state}</option>;
-          })}
+        {/* Loop through the countries you imported here */}
+        <select id="country" name="country" className="form-control" value={props.formData.country} onChange={updateState}>
+          {
+            countries.map((country, idx) => {
+              return <option key={`country${idx}`} value={country}>{country}</option>
+            })
+          }
         </select>
       </div>
       <button type="submit" className="btn btn-primary">

@@ -15,7 +15,13 @@ function AddressResults(props) {
   return (
     <div className="card card-body bg-light mt-4 mb-4">
       Results:
-      <ul className="list-unstyled mb-0">{/* Add <li></li> tags here */}</ul>
+      <ul className="list-unstyled mb-0">
+        {
+          Object.entries(props.formData).map((array, idx) => {
+            return <li key={idx}><i>{array[0]}:</i> <strong>{array[1]}</strong></li>
+          })
+        }
+      </ul>
     </div>
   );
 }

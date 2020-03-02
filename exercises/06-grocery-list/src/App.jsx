@@ -7,7 +7,6 @@ const GroceryList = () => {
   const [msg, setMsg] = useState("");
   const [totalCost, setTotalCost] = useState(0);
   const [list, setList] = useState([]);
-  const [qtys, setQtys] = useState({});
 
   const addItem = e => {
     e.preventDefault();
@@ -22,32 +21,6 @@ const GroceryList = () => {
     }else{
       setMsg("You cannot have empty fields")
     }
-    console.log(list)
-
-    list.forEach(item => {
-      console.log(item)
-      if (qtys[Object.keys(item)]){
-        setQtys({
-          ...qtys,
-          [Object.keys(item)]: qtys[Object.keys(item)] + 1
-        });
-      }
-      else{
-        const key = [Object.keys(item)];
-        setQtys({
-          ...qtys,
-          [key]: 1
-        });
-      }
-    })
-
-    console.log(qtys);
-
-    // (list.reduce((tally, item) => {
-    //   if (tally[item]) tally[item] += 1;
-    //   else tally[item] = 1;
-    //   return tally;
-    // }, {}))
 
   }
 
@@ -62,6 +35,7 @@ const GroceryList = () => {
     })
     setTotalCost(totalCost - parseFloat(Object.values(itemCost[0]), 10))
   };
+
   return (
     <div className="container">
       <div className="card card-body bg-light mb-2">
@@ -99,7 +73,6 @@ const GroceryList = () => {
         <table className="table table-compact">
           <thead>
             <tr>
-              <th>Qty.</th>
               <th>Item</th>
               <th>Cost</th>
               <th></th>
@@ -109,7 +82,6 @@ const GroceryList = () => {
             {
               list.map((val, idx)=>{
                 return (<tr key={"item-"+idx}>
-                  <td></td>
                   <td>{Object.keys(val)}</td>
                   <td>${Object.values(val)}</td>
                   <td>
