@@ -13,9 +13,9 @@ function App() {
    * @see exercises/08a-context-api/src/App.jsx
    * @see solutions/08a-context-api/App.solutions.jsx
    */
-   const [lang, setLang] = React.useState('en');
+   const [lang, setLang] = React.useState("en");
   return (
-    <TranslatorContext.Provider value={[lang, setLang]}>
+    <TranslatorContext.Provider value={{lang, setLang}}>
       <div className="App d-flex flex-column">
         <NavBar />
         <div className="container pt-4 pb-4">

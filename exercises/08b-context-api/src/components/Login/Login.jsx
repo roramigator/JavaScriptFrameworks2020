@@ -15,7 +15,8 @@ function Language() {
    * Replace "en" with a constant or variable.
    */
   const {lang} = React.useContext(TranslatorContext);
-  const t = translations["en"];
+
+  const t = translations[lang];
 
   /**
    * You do not have to change anything below this line.

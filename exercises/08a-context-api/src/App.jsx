@@ -5,23 +5,31 @@ import translations from "./assets/translations.json";
 /**
  * Declare createContext() here.
  */
+ const LangContext = createContext();
 
-function App() {
+function App(props) {
   /**
    * Set state here. (See useState in "CreateAccount" below.)
    */
+   const [language, setLanguage] = useState("en");
+
+
 
   /**
    * You will need to return more than just <CreateAccount />.
    */
-  return <CreateAccount />;
+  return (
+    <LangContext.Provider value={[language, setLanguage]}>
+      <CreateAccount />
+    </LangContext.Provider>
+    );
 }
 
 function CreateAccount() {
   /**
    * You will need to replace "useState" with something else.
    */
-  const [language, setLanguage] = useState("en");
+  // const [language, setLanguage] = useState("en");
 
   /**
    * @see src/assets/translations.json
@@ -38,7 +46,8 @@ function CreateAccount() {
    *    // ...
    * }
    */
-  const t = translations[language];
+  const [lang, setLang] = useContext(LangContext);
+  const t = translations[lang];
 
   /**
    * You will not need to change anything below this line.
@@ -54,7 +63,7 @@ function CreateAccount() {
           <button
             type="button"
             className="btn btn-link btn-sm"
-            onClick={() => setLanguage("en")}
+            onClick={() => setLang("en")}
           >
             English
           </button>
@@ -62,7 +71,7 @@ function CreateAccount() {
           <button
             type="button"
             className="btn btn-link btn-sm"
-            onClick={() => setLanguage("es")}
+            onClick={() => setLang("es")}
           >
             Español
           </button>

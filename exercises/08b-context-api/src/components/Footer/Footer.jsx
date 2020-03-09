@@ -3,6 +3,7 @@ import React from "react";
 import Languages from "../Languages/Languages";
 import translations from "./FooterTranslations.json";
 // Import "TranslatorContext"
+import TranslatorContext from '../../contexts/TranslatorContext';
 
 function Footer() {
   /**
@@ -14,7 +15,8 @@ function Footer() {
   /**
    * Replace "en" with a constant or variable.
    */
-  const t = translations["en"];
+  const {lang} = React.useContext(TranslatorContext);
+  const t = translations[lang];
 
   /**
    * You do not have to change anything below this line.
