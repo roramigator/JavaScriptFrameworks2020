@@ -25,8 +25,7 @@ function App() {
    */
 
    React.useEffect(()=>{
-     fetch(`https://dog.ceo/api/breeds/image/random/${dogsCounter}`)
-       .then(set=>set.json())
+     fetch(`https://dog.ceo/api/breeds/image/random/${dogsCounter}`).then(set=>set.json())
        .then(res=>{
          setDogImages(res.message);
        });
