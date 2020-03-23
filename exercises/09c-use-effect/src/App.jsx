@@ -8,28 +8,53 @@ function App() {
    * Set up state and make AJAX requests here
    */
 
+   const [characters, setCharacters] = useState([]);
+   const [id, setId] = useState(1);
+   const [char, setChar] = useState();
+
+   React.useEffect(()=>{
+     (async () => {
+        const chars = await fetch(`https://rickandmortyapi.com/api/character/`).then(set=>set.json());
+        setCharacters(chars.results);
+     })();
+   },[]);
+
+   React.useEffect(()=>{
+     fetch(`https://rickandmortyapi.com/api/character/${id}`)
+       .then(set=>set.json())
+       .then(res=>setChar([res]))
+   },[id]);
+
   return (
     <div className="container">
       <div className="row text-center" id="body">
-        <h1 id="title-head">{/* Plugin character name here */}</h1>
         <div id="main-img">
-          <a href="http://rickandmorty.wikia.com/wiki/Rick_Sanchez">
-            <img
-              alt={/* Plugin character name here */}
-              src={/* Plugin character image here */}
-              height="250"
-            />
-          </a>
+          {
+            char && char.map((c, idx)=>{
+              return (
+                <div key={'character-'+idx}>
+                  <h1 id="title-head" key={'header-'+idx}>{c.name}</h1>
+                  <img
+                    alt={c.name}
+                    src={c.image}
+                    heigth='250'
+                    key={'img-'+idx}
+                  />
+                </div>
+              )
+            })
+          }
           <div className="linkfooter">
             <p>Select your favorite character</p>
             {/* Handle event here */}
-            <select id="dropdown" type="text">
-              <option></option>
-              {/**
-               * Loop through all characters. The value should be the character id.
-               * @example in HTML
-               * <option value="2" key="character-1">Morty Smith</option>
-               */}
+            <select id="dropdown" type="text" onChange={e=>setId(e.target.value)}>
+              {
+                characters && characters.map((char,idx)=>{
+                  return (
+                    <option value={char.id} key={'option-'+idx}>{char.name}</option>
+                  )
+                })
+              }
             </select>
           </div>
         </div>

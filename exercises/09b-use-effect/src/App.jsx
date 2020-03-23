@@ -14,6 +14,7 @@ function App() {
    * ]
    */
   const [dogImages, setDogImages] = useState([]);
+  const [dogsCounter, setDogsCounter] = useState(1);
 
   /**
    * You may need to set something else in state
@@ -23,11 +24,19 @@ function App() {
    * Make an AJAX call with the useEffect hook
    */
 
+   React.useEffect(()=>{
+     fetch(`https://dog.ceo/api/breeds/image/random/${dogsCounter}`)
+       .then(set=>set.json())
+       .then(res=>{
+         setDogImages(res.message);
+       });
+   },[dogsCounter]);
+
   return (
     <div className="App">
       <h1>Dogs</h1>
       {/* Attach an event handler */}
-      <select>
+      <select value={dogsCounter} onChange={e => setDogsCounter(e.target.value)}>
         <option>1</option>
         <option>2</option>
         <option>3</option>
