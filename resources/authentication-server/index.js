@@ -105,6 +105,8 @@ app
 app
   .route(["/cookie/users", "/cookie/movies"])
   .get((req, res) => {
+    console.log(req.query)
+    console.log(req.params)
     try {
       const { id } = req.query;
       if (id !== UUID) throw new Error("UnauthorizedError");
