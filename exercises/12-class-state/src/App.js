@@ -1,6 +1,7 @@
 import React from "react";
 
 // Import Likes here
+import Likes from './components/Likes/Likes';
 // Import LessText here
 // Import CharacterCount here
 
@@ -11,6 +12,7 @@ function App() {
         <div className="container">
           <h1 className="h3">Challenge 1 - Likes</h1>
           {/* Add CharacterCount here */}
+          <Likes />
         </div>
       </div>
       <div className="container pt-4 pb-4">

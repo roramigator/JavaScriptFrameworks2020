@@ -3,7 +3,7 @@ import React, { Component } from "react";
 
 class Likes extends Component {
   state = {
-    likes: 0,
+    txt: this.props.length
   };
 
   /**
@@ -11,9 +11,9 @@ class Likes extends Component {
    *
    */
 
-  like = () => {
-    const likes = this.state.likes + 1;
-    this.setState({likes});
+  lessText = (l) => {
+
+    this.setState({length: l});
   };
 
   render() {
