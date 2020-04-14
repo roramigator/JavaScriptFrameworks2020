@@ -3,6 +3,7 @@ import React from "react";
 function App(props) {
   const handleSubmit = e => {
     e.preventDefault();
+    // console.log(props)
     props.addTodo();
   };
   return (

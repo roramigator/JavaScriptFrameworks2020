@@ -15,7 +15,7 @@ import {
 } from "../actions";
 
 const mapStateToProps = state => {
-  console.log("state", state);
+  // console.log("AppConteiner state", state);
   return {
     count: state.count,
     isVisible: state.isVisible,
